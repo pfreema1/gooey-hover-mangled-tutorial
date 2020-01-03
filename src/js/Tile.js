@@ -155,8 +155,9 @@ export default class Tile {
     }
 
     onScroll({ offset, limit }) {
-        console.log("offset:  ", offset);
-        console.log("limit:  ", limit);
+        // console.log("offset:  ", offset);
+        // console.log("limit:  ", limit);
+        // console.log(this.scroll);
         this.scroll = offset.x / limit.x;
     }
 
@@ -239,6 +240,11 @@ export default class Tile {
             y: this.offset.y
         });
 
+        // TM.set(this.mesh.position, {
+        //     x: 0,
+        //     y: 0
+        // });
+
         TM.to(this.mesh.scale, 0.3, {
             x: this.sizes.x - this.delta,
             y: this.sizes.y - this.delta,
@@ -248,6 +254,7 @@ export default class Tile {
 
     update() {
         this.delta = Math.abs((this.scroll - this.prevScroll) * 2000);
+        console.log(this.delta);
 
         if (!this.mesh) return;
 
@@ -258,7 +265,8 @@ export default class Tile {
         if (!this.isHovering) return;
         this.uniforms.u_time.value += this.clock.getDelta();
 
-        console.log("u_progressHover:  ", this.uniforms.u_progressHover.value);
+        // console.log("u_progressHover:  ", this.uniforms.u_progressHover.value);
+        console.log(this.mouse);
     }
 
     zoom({ tile, open }) {
